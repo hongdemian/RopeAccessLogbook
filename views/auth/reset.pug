@@ -4,7 +4,6 @@ block headcontent
 	link(rel='stylesheet', href='/stylesheets/forms.css')
 
 block content
-body
 	main
 		if errorMessage
 			div.user-message.user-message--error #{errorMessage}
@@ -14,4 +13,4 @@ body
 				input#email(type='email', name='email')
 			input(type='hidden', name='_csrf', value=csrfToken)
 			button.button.hollow.home-form-submit-button(type='submit') Reset Password
-include ../partials/end
+	include ../partials/end

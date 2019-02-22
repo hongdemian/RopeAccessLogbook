@@ -119,6 +119,8 @@ exports.postLogin = (req, res, next) => {
 exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
+  const name = req.body.name;
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -130,7 +132,8 @@ exports.postSignup = (req, res, next) => {
       oldInput: {
         email: email,
         password: password,
-        confirmPassword: req.body.confirmPassword
+        confirmPassword: confirmPassword,
+        name: name
       },
       validationErrors: errors.array()
     });

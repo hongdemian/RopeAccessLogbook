@@ -28,6 +28,7 @@ router.post(
 router.post(
   "/signup",
   [
+    check("name").isLength({ min: 4 }),
     check("email")
       .isEmail()
       .withMessage("Please enter a valid email.")
