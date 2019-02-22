@@ -1,0 +1,23 @@
+extends ../partials/head
+	block headcontent
+		link(rel='stylesheet', href='/stylesheets/auth.css')
+		link(rel='stylesheet', href='/stylesheets/forms.css')
+
+block content
+	body
+		main
+			if errorMessages
+				.user-message.user-message--error #{errorMessages}
+			form.login-form(action='/signup', method='POST' novalidate)
+				.form-control
+					label(for='email') Email
+					input#email(type='email', name='email', value=oldInput.email)
+				.form-control
+					label(for='password') Password
+					input#password(type='password', name='password', value=oldInput.password)
+				.form-control
+					label(for='confirm-password') Confirm Password
+					input#confirmPassword(type='password', name='confirm-password', value=oldInput.confirmPassword)
+				input(type='hidden', name='_csrf', value=csrfToken)
+				button.button.hollow(type='submit') Signup
+include ../partials/end

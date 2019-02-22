@@ -1,0 +1,17 @@
+extends ../partials/head
+block headcontent
+	link(rel='stylesheet', href='/stylesheets/auth.css')
+	link(rel='stylesheet', href='/stylesheets/forms.css')
+
+block content
+body
+	main
+		if errorMessage
+			div.user-message.user-message--error #{errorMessage}
+		form.login-form(action='/reset', method='POST')
+			.form-control
+				label(for='email') Email:
+				input#email(type='email', name='email')
+			input(type='hidden', name='_csrf', value=csrfToken)
+			button.button.hollow.home-form-submit-button(type='submit') Reset Password
+include ../partials/end

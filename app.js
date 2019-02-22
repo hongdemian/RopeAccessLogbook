@@ -139,7 +139,6 @@ mongoose
     useNewUrlParser: true
   })
   .then(result => {
-    console.log(result);
     console.log("Connected to MongoDB!");
   })
   .catch(err => {
