@@ -4,6 +4,38 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/foundation.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='https://code.jquery.com/jquery-2.1.4.min.js')
+    script(src='http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js')
 
   body
-    block content
+    .title-bar(data-responsive-toggle='responsive-menu', data-hide-for='medium')
+        button.menu-icon(type='button', data-toggle="responsive-menu")
+        .title-bar-title Menu
+    #responsive-menu.top-bar
+      .top-bar-left
+        ul.dropdown.menu(data-dropdown-menu="")
+          li.menu-text Connecting Reflections
+          li
+            a(href='/forms') Forms
+            ul.menu.vertical
+                li
+                  a(href='/forms/flha') Field Level Hazard Assessment
+                li
+                  a(href='/forms/rplan') Fall Rescue Plan
+                li
+                  a(href='/forms/emerg') Emergency Plan
+                li
+                  a(href='/forms/hotwork') Hot Work Permit
+          li
+            a(href='/logbook') LogBook
+          li
+            a(href='/incident') Incident
+      .top-bar-right
+        ul.menu
+          li
+            a(href='/logout') Logout
+
+
+  block content
+  block moreContent
+

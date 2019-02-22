@@ -1,4 +1,11 @@
 const express = require("express");
-const router = express.Router();
 
-// router.get('/', adminController.getAddUser);
+const router = express.Router;
+
+router.get("/", (req, res, next) => {
+  res.render("index", {
+    title: "Admin"
+  });
+});
+
+module.exports = router;

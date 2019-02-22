@@ -51,6 +51,7 @@ const indexRouter = require("./routes/index");
 const logbookRoutes = require("./routes/logbook");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
+const weatherRoutes = require("./routes/weather");
 
 const app = express();
 
