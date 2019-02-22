@@ -1,0 +1,23 @@
+include ../partials/head
+	link(rel='stylesheet', href='/stylesheets/auth.css')
+
+body
+	main
+		.user-message.user-message--error=errorMessages
+		form.login-form(action='/login', method='POST')
+			.form-control
+				label(for='email') E-mail
+				input#email(type='email', name='email', value=oldInput.email)
+			.form-control
+				label(for='password') Password
+				input#password(type='password', name='password', value=oldInput.password)
+			input(type='hidden', name='_csrf', value=csrfToken)
+			button.button.home-form-submit-button.hollow(type='submit') Login
+		.menu-centered
+			a(href='/reset') Reset Password
+
+include ../partials/end
+
+
+
+

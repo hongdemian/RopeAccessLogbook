@@ -27,6 +27,6 @@ router.post("/rplan", (req, res, next) => {
   });
 });
 
-router.get("emerg", (req, res, next) => {});
+router.get("/emerg", (req, res, next) => {});
 
 module.exports = router;
