@@ -1,6 +1,11 @@
 const Logbook = require("../models/logbook");
 const {validationResult } = require('express-validator/check');
 
+const fs = require("fs");
+const path = require("path");
+
+const PDFDocument = require("pdfkit");
+
 exports.getIndex = (req, res, next) => {
   Logbook.find()
     .then(logs => {
@@ -12,9 +17,11 @@ exports.getIndex = (req, res, next) => {
         totalHours: "21000"
       });
     })
-    .catch(err => {
-      console.log(err);
-    });
+         .catch(err => {
+	         const error = new Error(err);
+	         error.httpStatusCode = 500;
+	         return next(error);
+         });
 };
 
 exports.getNewEntry = (req, res, next) => {
