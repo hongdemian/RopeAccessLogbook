@@ -109,6 +109,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
 mongoose
   .connect(MONGODB_URI, {
     useNewUrlParser: true
