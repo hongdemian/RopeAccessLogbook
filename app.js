@@ -7,6 +7,9 @@ const sassMiddleware = require("node-sass-middleware");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
+
+const app = express();
+const User = require("./models/user");
 //database init
 const mongoose = require("mongoose");
 const MONGODB_URI =
@@ -16,12 +19,14 @@ const store = new MongoDBStore({
   collection: "sessions"
 });
 
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
+
 //middleware
 const bodyParser = require("body-parser");
 const csrfProtection = csrf();
 const flash = require("connect-flash");
-//User model
-const User = require("./models/user");
+
 //image upload
 const multer = require("multer");
 const fileStorage = multer.diskStorage({
@@ -47,18 +52,14 @@ const fileFilter = (req, file, cb) => {
 
 // routes setup
 const errorController = require("./controllers/error");
-const indexRouter = require("./routes/index");
-const logbookRoutes = require("./routes/logbook");
+
+const indexRoutes = require("./routes/index");
+// const formsRoutes = require("./routes/forms");
+// const logbookRoutes = require("./routes/logbook");
 const authRoutes = require("./routes/auth");
-const adminRoutes = require("./routes/admin");
+// const adminRoutes = require("./routes/admin");
+// const weatherRoutes = require("./routes/weather");
 
-const app = express();
-
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
-
-//my middleware
 app.use(
   bodyParser.urlencoded({
     extended: false
@@ -92,7 +93,31 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+app.use((req, res, next) => {
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
+    .then(user => {
+      req.user = user;
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
+app.use("/", indexRoutes);
+// app.use(formsRoutes);
+// app.use(adminRoutes);
+// app.use(logbookRoutes);
+app.use(authRoutes);
+// app.use(weatherRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -114,7 +139,9 @@ mongoose
   .connect(MONGODB_URI, {
     useNewUrlParser: true
   })
-  .then(result => console.log("Connected to MongoDB!"))
+  .then(result => {
+    console.log("Connected to MongoDB!");
+  })
   .catch(err => {
     console.log("Error connecting to Mongo Server!");
   });

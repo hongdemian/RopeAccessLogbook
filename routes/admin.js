@@ -1,4 +1,9 @@
 const express = require("express");
-const router = express.Router();
+const { body } = require("express-validator/check");
 
-// router.get('/', adminController.getAddUser);
+const adminController = require("../controllers/admin");
+const isAuth = require("../middleware/is-auth");
+
+const router = express.Router;
+
+module.exports = router;

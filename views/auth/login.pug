@@ -1,0 +1,21 @@
+extends ../partials/head
+block headcontent
+	link(rel='stylesheet', href='/stylesheets/auth.css')
+	link(rel='stylesheet', href='/stylesheets/forms.css')
+
+block content
+	if errorMessage
+		.user-message.user-message--error #{errorMessage}
+	form.login-form(action='/login', method='POST')
+		.form-control
+			label(for='email') Email:
+			input#email(type='email', name='email', value=oldInput.email)
+		.form-control
+			label(for='password') Password:
+			input#password(type='password', name='password', value=oldInput.password)
+		input(type='hidden', value=csrfToken, name='_csrf')
+		button.button.hollow.home-form-submit-button(type='submit') Login
+		button
+			a#reset.clear.button.alert(href='/reset') Forgot Password!
+
+	include ../partials/end
