@@ -1,9 +1,11 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
 a {
-  color: #00B7FF; }
+  color: #00B7FF;
+}
 
 .user-message {
   margin: 30px auto 0;
@@ -12,11 +14,13 @@ a {
   padding: 0.5rem;
   border-radius: 3px;
   background: #b9c9ff;
-  text-align: center; }
+  text-align: center;
+}
 
 .user-message--error {
   border-color: red;
   background: #ffb0b0;
-  color: red; }
+  color: red;
+}
 
 /*# sourceMappingURL=style.css.map */
