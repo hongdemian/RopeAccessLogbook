@@ -1,18 +1,21 @@
+const Logbook = require("../models/logbook");
+const { validationResult } = require("express-validator/check");
+
 const fs = require("fs");
 const path = require("path");
 
 const PDFDocument = require("pdfkit");
 
-const Logbook = require("../models/logbook");
-
-exports.getLogs = (req, res, next) => {
+exports.getIndex = (req, res, next) => {
   Logbook.find()
-    .then(log => {
-      console.log(log);
-      res.render("log/log-list", {
-        logs: log,
-        pageTitle: "All Logs",
-        path: "/logs"
+    .then(logs => {
+      console.log("index page start render");
+      res.render("logbook/index", {
+        username: "Damien",
+        logs: logs,
+        pageTitle: "Logbook",
+        //TODO add user hours
+        totalHours: "21000"
       });
     })
     .catch(err => {
@@ -20,4 +23,29 @@ exports.getLogs = (req, res, next) => {
       error.httpStatusCode = 500;
       return next(error);
     });
+};
+
+exports.getNewEntry = (req, res, next) => {
+  res.render("logbook/edit-entry", {
+    pageTitle: "Add Entry",
+    path: "/logbook/new-entry",
+    editing: false,
+    hasError: false,
+    errorMessage: null,
+    validationErrors: []
+  });
+};
+
+exports.postNewEntry = (req, res, next) => {
+  const date = req.body.date;
+  const employer = req.body.employer;
+  const details = req.body.details;
+  const location = req.body.location;
+  const typeOfWork = req.body.typeOfWork;
+  const hours = req.body.hours;
+  const category = req.body.category;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+  }
 };

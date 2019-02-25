@@ -1,11 +1,18 @@
 const express = require("express");
 
-const router = express.Router;
+const router = express.Router();
+const { body } = require("express-validator/check");
 
-router.get("/", (req, res, next) => {
-  res.render("current-conditions", {
-    title: "Weather"
-  });
-});
+const logbookController = require("../controllers/logbook");
+const isAuth = require("../middleware/is-auth");
+
+router.get("/", isAuth, logbookController.getIndex);
+
+//new logbook entry
+router.get("/new-entry", isAuth, logbookController.getNewEntry);
+
+//accept new entry
+router.post("/new-entry", isAuth, logbookController.postNewEntry);
+//get list of all entries
 
 module.exports = router;

@@ -10,6 +10,7 @@ const logbookSchema = new Schema({
   typeOfWork: String,
   hours: Number,
   category: String,
+  maxHeight: String,
   verified: Boolean,
   signature: {
     name: String,

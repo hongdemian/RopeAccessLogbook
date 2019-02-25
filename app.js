@@ -55,7 +55,7 @@ const errorController = require("./controllers/error");
 
 const indexRoutes = require("./routes/index");
 // const formsRoutes = require("./routes/forms");
-// const logbookRoutes = require("./routes/logbook");
+const logbookRoutes = require("./routes/logbook");
 const authRoutes = require("./routes/auth");
 // const adminRoutes = require("./routes/admin");
 // const weatherRoutes = require("./routes/weather");
@@ -115,9 +115,9 @@ app.use((req, res, next) => {
 app.use("/", indexRoutes);
 // app.use(formsRoutes);
 // app.use(adminRoutes);
-// app.use(logbookRoutes);
+app.use("/logbook", logbookRoutes);
 app.use(authRoutes);
-// app.use(weatherRoutes);
+// app.use('/weather', weatherRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
