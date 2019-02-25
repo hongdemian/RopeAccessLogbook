@@ -1,16 +1,13 @@
-include ../partials/logbook-includes/logbook-head
+extends ../partials/logbook-includes/logbook-layout
 
-	link(rel='stylesheet', href='/stylesheets/logbook/logbook.css')
+block bodycontent
+	div
+		h4.text-center #{username}'s Logbook:
+			span.small #{totalHours} hours
 
-include ../partials/logbook-includes/logbook-navigation
-
-div.margin-top-0
-	h4.text-center #{username}'s Logbook:
-		span.small #{totalHours} hours
-
-div.callout.primary.medium-6.float-center.padding-top-1
-	if logs.length > 0
-		each log in logs
-			li= log
-	else
-		h6.font-bold.text-center No Log Entries!
+	div.callout.primary.medium-6.float-center.padding-top-1
+		if logs.length > 0
+			each log in logs
+				li= log
+		else
+			h6.font-bold.text-center No Log Entries!

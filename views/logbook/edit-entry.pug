@@ -1,0 +1,66 @@
+extends ../partials/logbook-includes/logbook-layout
+
+block bodycontent
+	h4.align-center-middle.text-center New Log Entry
+	form(action='/new-entry', method="POST")
+		.grid-container
+			.grid-x.grid-padding-x
+				.large-2.medium-3.cell.form-control
+					label Date:
+						input(type='date', name='date', placeholder='Date')
+				.large-2.medium-3.cell.form-control
+					label Time:
+						input(type='time', name='time', placeholder='Time', step='1800')
+				.large-4.medium-4.cell.form-control
+					label Location:
+						input(type='text', name='location', placeholder='Location')
+				.large-1.medium-2.cell.form-control
+					label Hours:
+						input(type='number', name='hours', placeholder='Hours')
+				.large-3.medium-6.cell.form-control
+					label Company:
+						input(type='text', name='employer', placeholder='Company')
+				.large-3.medium-3.cell.form-control
+					label Supervisor:
+						input(type='text', name='supervisor', placeholder='Supervisor')
+				.large-3.medium-3.cell.form-control
+					label Type:
+						select(name='typeOfWork')
+							option(value='rope') Two Rope
+							option(value='fall-protection') Fall Protection
+							option(value='travel-restraint') Travel Restraint
+							option(value='other') Other
+				.large-3.medium-3.cell.form-control
+					label Email:
+						input(type='email', name='email', placeholder='Supervisor Email', autocomplete=false)
+				.large-1.medium-2.cell.form-control
+					label ID:
+						input(type='text', name='id_num', placeholder='Id#')
+				.medium-2.cell.form-control
+					label Organization:
+						select(name='org')
+							option(value='irata') Irata
+							option(value='sprat') Sprat
+							option(value='') None
+				.large-4.cell.form-control
+					fieldset.fieldset.large-4.cell.form-control
+						legend Category:
+
+						input#descent(type='checkbox', value='descending')
+							label(for='descent') Descent
+
+						input#ascent(type='checkbox', value='ascending')
+							label(for='ascent') Ascent
+								//input(type='checkbox', value='vertical_aid') Vertical Aid
+								//input(type='checkbox', value='horizontal_aid') Horizontal Aid
+								//input(type='checkbox', value='deviation') Deviation
+								//input(type='checkbox', value='long_reanchor') Long ReAnchor
+								//input(type='checkbox', value='short_reanchor') Short ReAnchor
+								//input(type='checkbox', value='rope_to_rope') Rope to Rope Transfer
+								//input(type='checkbox', value='other') Other
+				.large-4.cell.form-control
+					label Details:
+						textarea(rows='3', name='details', placeholder='Short Description of work done.')
+				.large-2.cell.form-control
+					label Max-Height:
+						input(type='String', name='max_height', placeholder='Max Height')

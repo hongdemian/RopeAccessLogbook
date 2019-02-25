@@ -1,12 +1,11 @@
-.top-bar
-	.top-bar-left.menu
-		li.menu-text Log Book
-		li
-			a(href='#') Logs
-		li
-				a(href='logbook/new-entry') New
-		li
-				a(href='logbook/list') List
-	.top-bar-right
-		li.menu
-			a(href='/') Home
+.top-bar.stack-for-small
+	.top-bar-left
+		ul.menu
+			li
+				a.menu-text(href='/logbook') Log Book
+			li
+				a(href='/logbook/new-entry') New Entry
+	.top-bar-right.menu
+		ul.menu
+			li
+				a(href='/') Home
