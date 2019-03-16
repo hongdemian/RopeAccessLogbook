@@ -4,81 +4,89 @@ block bodycontent
 	h4.align-center-middle.text-center New Log Entry
 	form(action='/new-entry', method="POST")
 		.grid-container
-			.grid-x.grid-padding-x
-				.small-6.large-2.medium-3.cell.form-control
-					label.input-group-label Date:
-						input(type='date', name='date', placeholder='Date')
-				.small-6.large-2.medium-3.cell.form-control
-					label.input-group-label Time:
-						input(type='time', name='time', placeholder='Time', step='1800')
-				.small-10.large-4.medium-4.cell.form-control
-					label.input-group-label Location:
-						input(type='text', name='location', placeholder='Location')
-				.small-2.large-1.medium-2.cell.form-control
-					label.input-group-label Hours:
-						input(type='number', name='hours', placeholder='Hours')
-				.small-12.large-3.medium-6.cell.form-control
-					label.input-group-label Company:
-						input(type='text', name='employer', placeholder='Company')
-				.small-12.large-3.medium-3.cell.form-control
-					label.input-group-label Supervisor:
-						input(type='text', name='supervisor', placeholder='Supervisor')
-				.small-12.large-3.medium-3.cell.form-control
-					label.input-group-label Type:
-						select(name='typeOfWork')
-							option(value='rope') Two Rope
+			.grid-x.grid-padding-x.align-justify.grid-margin-y
+				.cell.small-6.large-2.medium-3.input-group
+					span.input-group-label Date:
+					input.input-group-field(type='date', name='date', placeholder='Date')
+				.cell.small-6.large-2.medium-3.input-group
+					span.input-group-label Time:
+					input#time.input-group-field(type='time', name='time', placeholder='Time', step='1800')
+				.cell.small-12.large-4.medium-4.cell.input-group
+					span.input-group-label Location:
+					input.input-group-field(type='text', name='location', placeholder='Location')
+				.cell.small-12.large-3.medium-6.input-group
+					span.input-group-label Company:
+					input.input-group-field(type='text', name='employer', placeholder='Company' autocomplete=false)
+
+				.cell.small-12.large-3.medium-3.input-group
+					span.input-group-label Supervisor:
+					input.input-group-field(type='text', name='supervisor', placeholder='Supervisor')
+				.cell.small-12.large-3.medium-3.input-group
+					span.input-group-label Email:
+					input.input-group-field(type='email', name='email', placeholder='Supervisor Email', autocomplete=false)
+				.cell.small-12.large-2.medium-4.input-group
+					span.input-group-label ID:
+					input.input-group-field(type='text', name='id_num', placeholder='Id#')
+				.cell.small-12.large-3.medium-4.input-group
+					span.input-group-label Hours:
+					input.input-group-field(type='number', name='hours', placeholder='Hours')
+				.cell.large-4.small-12.medium-4.input-group
+					span.input-group-label Height:
+					input.input-group-field(type='text', name='max_height', placeholder='Max Height')
+					span.input-group-label Ft
+				.cell.small-12.large-4.medium-6.input-group
+					span.input-group-label Type:
+					select.input-group-field(name='typeOfWork')
+							option(value='rope') Rope Access
 							option(value='fall-protection') Fall Protection
 							option(value='travel-restraint') Travel Restraint
-							option(value='other') Other
-				.small-12.large-3.medium-3.cell.form-control
-					label.input-group-label Email:
-					input(type='email', name='email', placeholder='Supervisor Email', autocomplete=false)
-				.small-8.large-1.medium-2.cell.form-control
-					label.input-group-label ID:
-					input(type='text', name='id_num', placeholder='Id#')
-				.small-4.medium-2.cell.form-control
-					label.input-group-label Organization:
-						select(name='org')
-							option(value='irata') Irata
-							option(value='sprat') Sprat
-							option(value='') None
-				.small-12.large-3.cell.form-control.flex-dir-column
-					fieldset.fieldset.large-2.cell.form-control
-						legend Category:
-						.input-group
-							label.input-group-label(for='descent') Descent
-							input#descent.input-group-field(type='checkbox', value='descending', name='descent')
+							option(value='train') Training
+							option(value='plan') Planning
+				.cell.small-12.medium-6.large-4.input-group
+					span.input-group-label Organization:
+					select.input-group-field(name='org')
+						option(value='irata') Irata
+						option(value='sprat') Sprat
+						option(value='') None
+				fieldset.cell.fieldset.small-12.large-7
+					legend Types of Work Used:
+					.grid-container.fluid
+						.grid-x.align-.grid-margin-x.medium-margin-collapse
+							.input-group.small-12.medium-4
+								input(id='descent' type='checkbox')
+								label(for='descent') Descent
+							.input-group.small-12.medium-4
+								input(id='ascent' type='checkbox')
+								label(for='ascent') Ascent
+							.input-group.small-12.medium-4
+								input(id='v_aid' type='checkbox')
+								label(for='v_aid') Vertical Aid
+							.input-group.small-12.medium-4
+								input(id='h_aid' type='checkbox')
+								label(for='h_aid') Horizontal Aid
+							.input-group.small-12.medium-4
+								input(id='deviation' type='checkbox')
+								label(for='deviation') Deviation
+							.input-group.small-12.medium-4
+								input(id='l_reanchor' type='checkbox')
+								label(for='l_reanchor') Long ReAnchor
+							.input-group.small-12.medium-4
+								input(id='s_reanchor' type='checkbox')
+								label(for='s_reanchor') Short ReAnchor
+							.input-group.small-12.medium-4
+								input(id='r2r_transfer' type='checkbox')
+								label(for='r2r_transfer') Rope to Rope
+							.input-group.small-12.medium-4
+								input(id='edge' type='checkbox')
+								label(for='edge') Edge Negotiation
+							.input-group.small-12.medium-4
+								input(id='rescue' type='checkbox')
+								label(for='rescue') Rescue
+							.input-group.small-12.medium-4
+								input(id='train' type='checkbox')
+								label(for='train') Training
 
-						.input-group
-							label.input-group-label(for='ascent') Ascent
-							input#ascent.input-group-field(type='checkbox', value='ascending', name='ascent')
+				.cell.large-5.small-12
+					span.input-group-label(for='details') Details:
+					textarea.input-group-field#details(rows='9', name='details', placeholder='Short Description of work done.' )
 
-						.input-group
-							label.input-group-label(for='v_aid') Vertical Aid
-							input#v_aid.input-group-field(type='checkbox', value='vertical_aid', name='v_aid')
-
-						.input-group
-							label.input-group-label(for='h_aid') Horizontal Aid
-							input#h_aid.input-group-field(type='checkbox', value='horizontal_aid', name='h_aid')
-
-						.input-group
-							label.input-group-label(for='deviation') Deviation
-							input#deviation.input-group-field(type='checkbox', value='deviation', name='deviation')
-						.input-group
-							label.input-group-label(for='l_reanchor') Long ReAnchor
-							input#l_reanchor.input-group-field(type='checkbox', value='long_reanchor', name='l_reanchor')
-						.input-group
-							label.input-group-label(for='s_reanchor') Short Reanchor
-							input#s_reanchor.input-group-field(type='checkbox', value='short_reanchor', name='s_reanchor')
-						.input-group
-							label.input-group-label(for='r2r_transfer') Rope to Rope
-							input#r2r_transfer.input-group-field(type='checkbox', value='rope_to_rope', name='r2r_transfer')
-						.input-group
-							label.input-group-label(for='other') Other
-							input#other.input-group-field(type='checkbox', value='other', name='other')
-				.large-4.cell.form-control
-					label.input-group-label(for='details') Details:
-					textarea.input-group-field#details(rows='3', name='details', placeholder='Short Description of work done.')
-				.large-2.cell.form-control
-					label.input-group-label(for='max_height') Max-Height:
-					input#max_height.input-group-field(type='String', name='max_height', placeholder='Max Height')
