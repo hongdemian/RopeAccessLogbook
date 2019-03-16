@@ -7,6 +7,9 @@
     <orderEntry type="library" name="foundation" level="application" />
     <orderEntry type="library" name="jquery-2.1.4" level="application" />
   </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_CONFIGURATION" value="Django" />
+  </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
