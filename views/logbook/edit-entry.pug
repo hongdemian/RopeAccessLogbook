@@ -1,23 +1,22 @@
 extends ../partials/logbook-includes/logbook-layout
 
 block bodycontent
-	h4.align-center-middle.text-center New Log Entry
-	form(action='/new-entry', method="POST")
+	h4.align-center-middle.text-center.margin-vertical-3 New Log Entry
+	form(action='', method="POST")
 		.grid-container
 			.grid-x.grid-padding-x.align-justify.grid-margin-y
-				.cell.small-6.large-2.medium-3.input-group
+				.cell.small-12.large-2.medium-6.input-group
 					span.input-group-label Date:
-					input.input-group-field(type='date', name='date', placeholder='Date')
-				.cell.small-6.large-2.medium-3.input-group
+					input.input-group-field(type='text', name='date', placeholder='Date')
+				.cell.small-12.large-2.medium-6.input-group
 					span.input-group-label Time:
-					input#time.input-group-field(type='time', name='time', placeholder='Time', step='1800')
+					input#time.input-group-field(type='text', name='time', placeholder='Time', step='1800')
 				.cell.small-12.large-4.medium-4.cell.input-group
 					span.input-group-label Location:
 					input.input-group-field(type='text', name='location', placeholder='Location')
 				.cell.small-12.large-3.medium-6.input-group
 					span.input-group-label Company:
 					input.input-group-field(type='text', name='employer', placeholder='Company' autocomplete=false)
-
 				.cell.small-12.large-3.medium-3.input-group
 					span.input-group-label Supervisor:
 					input.input-group-field(type='text', name='supervisor', placeholder='Supervisor')
@@ -37,56 +36,60 @@ block bodycontent
 				.cell.small-12.large-4.medium-6.input-group
 					span.input-group-label Type:
 					select.input-group-field(name='typeOfWork')
-							option(value='rope') Rope Access
-							option(value='fall-protection') Fall Protection
-							option(value='travel-restraint') Travel Restraint
-							option(value='train') Training
-							option(value='plan') Planning
+						option(value='rope') Rope Access
+						option(value='fall-protection') Fall Protection
+						option(value='travel-restraint') Travel Restraint
+						option(value='train') Training
+						option(value='plan') Planning
 				.cell.small-12.medium-6.large-4.input-group
 					span.input-group-label Organization:
 					select.input-group-field(name='org')
-						option(value='irata') Irata
 						option(value='sprat') Sprat
+						option(value='irata') Irata
 						option(value='') None
 				fieldset.cell.fieldset.small-12.large-7
 					legend Types of Work Used:
 					.grid-container.fluid
 						.grid-x.align-.grid-margin-x.medium-margin-collapse
 							.input-group.small-12.medium-4
-								input(id='descent' type='checkbox')
+								input(id='descent', type='checkbox', name='types[]', value='descent')
 								label(for='descent') Descent
 							.input-group.small-12.medium-4
-								input(id='ascent' type='checkbox')
+								input(id='ascent', type='checkbox', name='types[]', value='ascent')
 								label(for='ascent') Ascent
 							.input-group.small-12.medium-4
-								input(id='v_aid' type='checkbox')
+								input(id='v_aid', type='checkbox', name='types[]', value='v_aid')
 								label(for='v_aid') Vertical Aid
 							.input-group.small-12.medium-4
-								input(id='h_aid' type='checkbox')
+								input(id='h_aid', type='checkbox', name='types[]', value='h_aid')
 								label(for='h_aid') Horizontal Aid
 							.input-group.small-12.medium-4
-								input(id='deviation' type='checkbox')
+								input(id='deviation', type='checkbox', name='types[]', value='deviation')
 								label(for='deviation') Deviation
 							.input-group.small-12.medium-4
-								input(id='l_reanchor' type='checkbox')
+								input(id='l_reanchor', type='checkbox', name='types[]', value='l_anchor')
 								label(for='l_reanchor') Long ReAnchor
 							.input-group.small-12.medium-4
-								input(id='s_reanchor' type='checkbox')
+								input(id='s_reanchor', type='checkbox', name='types[]', value='s_anchor')
 								label(for='s_reanchor') Short ReAnchor
 							.input-group.small-12.medium-4
-								input(id='r2r_transfer' type='checkbox')
+								input(id='r2r_transfer', type='checkbox', name='types[]', value='r2r_transfer')
 								label(for='r2r_transfer') Rope to Rope
 							.input-group.small-12.medium-4
-								input(id='edge' type='checkbox')
+								input(id='edge', type='checkbox', name='types[]', value='edge')
 								label(for='edge') Edge Negotiation
 							.input-group.small-12.medium-4
-								input(id='rescue' type='checkbox')
+								input(id='rescue', type='checkbox', name='types[]', value='rescue')
 								label(for='rescue') Rescue
 							.input-group.small-12.medium-4
-								input(id='train' type='checkbox')
+								input(id='train', type='checkbox', name='types[]', value='training')
 								label(for='train') Training
 
 				.cell.large-5.small-12
-					span.input-group-label(for='details') Details:
-					textarea.input-group-field#details(rows='9', name='details', placeholder='Short Description of work done.' )
+					span.input-group-label Details:
+					textarea.input-group-field#details(rows='9', name='details', placeholder='Short Description...' )
 
+			.align-spaced.grid-x.grid-margin-y
+				input.hide(name="_csrf", value= csrfToken)
+				button.button.warning.hollow.cell.large-3.small-12.shadow(type='reset' href="/edit-entry") Reset Form
+				button.button.success.hollow.cell.large-3.small-12.shadow(type='submit') Save Entry
