@@ -9,7 +9,7 @@ const LogSchema = new Schema({
     default: Date.now()
   },
   location: String,
-  employer: String,
+  company: String,
   signature: {
     supervisor: String,
     email: String,

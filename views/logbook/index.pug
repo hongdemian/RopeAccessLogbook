@@ -10,17 +10,25 @@ block bodycontent
 			table.hover
 				thead
 					tr
-						th Logbook:
+						th Date
+						th Location
+						th Company
+						th Hours
+						th Max
+						th Type
+						th Techniques
 				tbody
-			each log in logs
-					tr
-						td= log.user
-						td= log.date
-						td= log.location
-						td= log.company
-						td= log.hours
-						td= log.maxHeight
-						td= log.type
-						td= log.techniques
+					each log in logs
+						tr
+							if log.date
+								td= log.date.toLocaleDateString("en-US")
+							else
+								td= ""
+							td= log.location
+							td= log.company
+							td= log.hours
+							td= log.maxHeight
+							td= log.type
+							td= log.techniques
 		else
 			h6.font-bold.text-center No Log Entries!

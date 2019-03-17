@@ -40,7 +40,7 @@ exports.postNewEntry = (req, res, next) => {
   const date = req.body.date;
   const time = req.body.time;
   const location = req.body.location;
-  const employer = req.body.employer;
+  const company = req.body.company;
   const supervisor = req.body.supervisor;
   const email = req.body.email;
   const id = req.body.id_num;
@@ -52,13 +52,14 @@ exports.postNewEntry = (req, res, next) => {
   const details = req.body.details;
   const user = req.user._id;
   const errors = validationResult(req);
+  console.log(techniques);
 
   const log = new Log({
     user,
     date,
     time,
     location,
-    employer,
+    company,
     supervisor,
     email,
     id,
@@ -74,7 +75,6 @@ exports.postNewEntry = (req, res, next) => {
     .save()
     .then(result => {
       console.log("Log Entry Created!");
-      res.redirect("/logbook/index");
     })
     .catch(err => {
       console.log(err);
@@ -94,6 +94,6 @@ exports.postNewEntry = (req, res, next) => {
     logs: [],
     // logs: logs,
     //TODO add user hours
-    totalHours: "21000"
+    totalHours: " 21000"
   });
 };

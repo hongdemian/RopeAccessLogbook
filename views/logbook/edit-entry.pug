@@ -16,7 +16,7 @@ block bodycontent
 					input.input-group-field(type='text', name='location', placeholder='Location')
 				.cell.small-12.large-3.medium-6.input-group
 					span.input-group-label Company:
-					input.input-group-field(type='text', name='employer', placeholder='Company' autocomplete=false)
+					input.input-group-field(type='text', name='company', placeholder='Company' autocomplete=false)
 				.cell.small-12.large-3.medium-3.input-group
 					span.input-group-label Supervisor:
 					input.input-group-field(type='text', name='supervisor', placeholder='Supervisor')
@@ -52,37 +52,37 @@ block bodycontent
 					.grid-container.fluid
 						.grid-x.align-.grid-margin-x.medium-margin-collapse
 							.input-group.small-12.medium-4
-								input(id='descent', type='checkbox', name='types[]', value='descent')
+								input(id='descent', type='checkbox', name='types', value='Descent')
 								label(for='descent') Descent
 							.input-group.small-12.medium-4
-								input(id='ascent', type='checkbox', name='types[]', value='ascent')
+								input(id='ascent', type='checkbox', name='types', value='Ascent')
 								label(for='ascent') Ascent
 							.input-group.small-12.medium-4
-								input(id='v_aid', type='checkbox', name='types[]', value='v_aid')
+								input(id='v_aid', type='checkbox', name='types', value='Vertical Aid')
 								label(for='v_aid') Vertical Aid
 							.input-group.small-12.medium-4
-								input(id='h_aid', type='checkbox', name='types[]', value='h_aid')
+								input(id='h_aid', type='checkbox', name='types', value='Horizontal Aid')
 								label(for='h_aid') Horizontal Aid
 							.input-group.small-12.medium-4
-								input(id='deviation', type='checkbox', name='types[]', value='deviation')
+								input(id='deviation', type='checkbox', name='types', value='Deviation')
 								label(for='deviation') Deviation
 							.input-group.small-12.medium-4
-								input(id='l_reanchor', type='checkbox', name='types[]', value='l_anchor')
+								input(id='l_reanchor', type='checkbox', name='types', value='Long ReAnchor')
 								label(for='l_reanchor') Long ReAnchor
 							.input-group.small-12.medium-4
-								input(id='s_reanchor', type='checkbox', name='types[]', value='s_anchor')
+								input(id='s_reanchor', type='checkbox', name='types', value='Short ReAnchor')
 								label(for='s_reanchor') Short ReAnchor
 							.input-group.small-12.medium-4
-								input(id='r2r_transfer', type='checkbox', name='types[]', value='r2r_transfer')
+								input(id='r2r_transfer', type='checkbox', name='types', value='Rope to Rope')
 								label(for='r2r_transfer') Rope to Rope
 							.input-group.small-12.medium-4
-								input(id='edge', type='checkbox', name='types[]', value='edge')
+								input(id='edge', type='checkbox', name='types', value='Edge')
 								label(for='edge') Edge Negotiation
 							.input-group.small-12.medium-4
-								input(id='rescue', type='checkbox', name='types[]', value='rescue')
+								input(id='rescue', type='checkbox', name='types', value='Stand-by Rescue')
 								label(for='rescue') Rescue
 							.input-group.small-12.medium-4
-								input(id='train', type='checkbox', name='types[]', value='training')
+								input(id='train', type='checkbox', name='types', value='Training')
 								label(for='train') Training
 
 				.cell.large-5.small-12
