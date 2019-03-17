@@ -36,11 +36,12 @@ block bodycontent
 				.cell.small-12.large-4.medium-6.input-group
 					span.input-group-label Type:
 					select.input-group-field(name='typeOfWork')
-						option(value='rope') Rope Access
-						option(value='fall-protection') Fall Protection
-						option(value='travel-restraint') Travel Restraint
-						option(value='train') Training
-						option(value='plan') Planning
+						option(value='Rope Access') Rope Access
+						option(value='Fall-protection') Fall Protection
+						option(value='Travel-restraint') Travel Restraint
+						option(value='Training') Training
+						option(value='Planning') Planning
+						option(value='Stand-By Rescue') Stand-by Rescue
 				.cell.small-12.medium-6.large-4.input-group
 					span.input-group-label Organization:
 					select.input-group-field(name='org')
@@ -91,5 +92,5 @@ block bodycontent
 
 			.align-spaced.grid-x.grid-margin-y
 				input.hide(name="_csrf", value= csrfToken)
-				button.button.warning.hollow.cell.large-3.small-12.shadow(type='reset' href="/edit-entry") Reset Form
+				button.button.alert.hollow.cell.large-3.small-12.shadow(type='reset' href="/edit-entry") Reset Form
 				button.button.success.hollow.cell.large-3.small-12.shadow(type='submit') Save Entry

@@ -1,0 +1,30 @@
+extends ../partials/logbook-includes/logbook-layout
+
+block bodycontent
+	.callout.primary.medium-6.float-center.padding-top-1
+		if logs.length > 0 || log
+			table.hover
+				thead
+					tr
+						th Date
+						th Location
+						th Company
+						th Hours
+						th Max
+						th Type
+						th Techniques
+				tbody
+					each log in logs
+						tr
+							if log.date
+								td= log.date.toLocaleDateString("en-US")
+							else
+								td= ""
+							td= log.location
+							td= log.company
+							td= log.hours
+							td= log.maxHeight
+							td= log.type
+							td= log.techniques
+		else
+			h6.font-bold.text-center No Log Entries!

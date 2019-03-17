@@ -10,6 +10,7 @@ exports.getIndex = (req, res, next) => {
   Log.find()
     .then(logs => {
       console.log("index page start render");
+      console.log(req.user);
       res.render("logbook/index", {
         username: "Damien",
         logs: logs,
@@ -25,6 +26,15 @@ exports.getIndex = (req, res, next) => {
     });
 };
 
+exports.getList = (req, res, next) => {
+  Log.find({ userId: req.user._id }).then(logs => {
+    res.render("logbook/log-list", {
+      logs: logs,
+      pageTitle: "Logbook Entries",
+      path: "/logbook/list"
+    });
+  });
+};
 exports.getNewEntry = (req, res, next) => {
   res.render("logbook/edit-entry", {
     pageTitle: "Add Entry",
