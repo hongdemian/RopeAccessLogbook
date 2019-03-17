@@ -1,11 +1,17 @@
-.top-bar.stack-for-small
+//.title-bar(data-responsive-toggle="logbook-menu" data-hide-for="medium")
+//	button.menu-icon(type="button" data-toggle="logbook-menu")
+//	.title-bar-title Menu
+
+#logbook-menu.top-bar
 	.top-bar-left
-		ul.menu
+		ul.menu.dropdown(data-dropdown-menu)
+			li.menu-text(href='/logbook') Log Book
 			li
-				a.menu-text(href='/logbook') Log Book
+				a(href='/logbook') Entries
 			li
 				a(href='/logbook/new-entry') New Entry
-	.top-bar-right.menu
-		ul.menu
+
+	.top-bar-right
+		ul.menu.dropdown(data-dropdown-menu)
 			li
 				a(href='/') Home

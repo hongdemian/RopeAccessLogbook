@@ -1,14 +1,14 @@
 extends ../partials/logbook-includes/logbook-layout
 
 block bodycontent
-	h4.align-center-middle.text-center New Log Entry
+	h4.align-center-middle.text-center.margin-vertical-3 New Log Entry
 	form(action='/new-entry', method="POST")
 		.grid-container
 			.grid-x.grid-padding-x.align-justify.grid-margin-y
-				.cell.small-6.large-2.medium-3.input-group
+				.cell.small-12.large-2.medium-6.input-group
 					span.input-group-label Date:
 					input.input-group-field(type='date', name='date', placeholder='Date')
-				.cell.small-6.large-2.medium-3.input-group
+				.cell.small-12.large-2.medium-6.input-group
 					span.input-group-label Time:
 					input#time.input-group-field(type='time', name='time', placeholder='Time', step='1800')
 				.cell.small-12.large-4.medium-4.cell.input-group
@@ -87,6 +87,9 @@ block bodycontent
 								label(for='train') Training
 
 				.cell.large-5.small-12
-					span.input-group-label(for='details') Details:
-					textarea.input-group-field#details(rows='9', name='details', placeholder='Short Description of work done.' )
+					span.input-group-label Details:
+					textarea.input-group-field#details(rows='9', name='details', placeholder='Short Description...' )
 
+			.align-spaced.grid-x.grid-margin-y
+				button.button.warning.hollow.cell.large-3.small-12.shadow(type='reset') Reset Form
+				button.button.success.hollow.cell.large-3.small-12.shadow(type='submit') Save Entry
