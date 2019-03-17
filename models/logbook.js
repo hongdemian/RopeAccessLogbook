@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const logbookSchema = new Schema({
-  date: String,
-  time: String,
+const LogSchema = new Schema({
+  user: Object,
+  date: {
+    type: Date,
+    default: Date.now()
+  },
   location: String,
   employer: String,
   signature: {
@@ -17,11 +20,14 @@ const logbookSchema = new Schema({
     details: String
   },
   hours: Number,
-  maxHeight: String,
+  maxHeight: Number,
   type: String,
   techniques: String,
   details: String,
-  verified: Boolean
+  verified: {
+    type: Boolean,
+    default: false
+  }
 });
 
-module.exports = mongoose.model("Logbook", logbookSchema);
+module.exports = mongoose.model("Log", LogSchema);

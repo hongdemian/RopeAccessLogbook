@@ -3,11 +3,24 @@ extends ../partials/logbook-includes/logbook-layout
 block bodycontent
 	div
 		h4.text-center #{username}'s Logbook:
-			span.small #{totalHours} hours
+			span.small.stat #{totalHours} hours
 
 	.callout.primary.medium-6.float-center.padding-top-1
 		if logs.length > 0 || log
+			table.hover
+				thead
+					tr
+						th Logbook:
+				tbody
 			each log in logs
-				li= log
+					tr
+						td= log.user
+						td= log.date
+						td= log.location
+						td= log.company
+						td= log.hours
+						td= log.maxHeight
+						td= log.type
+						td= log.techniques
 		else
 			h6.font-bold.text-center No Log Entries!

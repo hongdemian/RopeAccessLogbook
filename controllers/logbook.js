@@ -1,4 +1,4 @@
-const Logbook = require("../models/logbook");
+const Log = require("../models/logbook");
 const { validationResult } = require("express-validator/check");
 
 const fs = require("fs");
@@ -7,7 +7,7 @@ const path = require("path");
 const PDFDocument = require("pdfkit");
 
 exports.getIndex = (req, res, next) => {
-  Logbook.find()
+  Log.find()
     .then(logs => {
       console.log("index page start render");
       res.render("logbook/index", {
@@ -50,9 +50,11 @@ exports.postNewEntry = (req, res, next) => {
   const organization = req.body.org;
   const techniques = req.body.types;
   const details = req.body.details;
+  const user = req.user._id;
   const errors = validationResult(req);
 
-  const log = new Logbook(
+  const log = new Log({
+    user,
     date,
     time,
     location,
@@ -65,9 +67,8 @@ exports.postNewEntry = (req, res, next) => {
     type,
     organization,
     techniques,
-    details,
-    req.user._id
-  );
+    details
+  });
 
   log
     .save()
