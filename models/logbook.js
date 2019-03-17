@@ -4,22 +4,24 @@ const Schema = mongoose.Schema;
 
 const logbookSchema = new Schema({
   date: String,
-  employer: String,
-  details: String,
+  time: String,
   location: String,
-  typeOfWork: String,
-  hours: Number,
-  category: String,
-  maxHeight: String,
-  verified: Boolean,
+  employer: String,
   signature: {
-    name: String,
+    supervisor: String,
     email: String,
-    phone: Number,
+    id: String,
+    organization: String,
     token: String,
     tokenExpiration: Date,
     details: String
-  }
+  },
+  hours: Number,
+  maxHeight: String,
+  type: String,
+  techniques: String,
+  details: String,
+  verified: Boolean
 });
 
 module.exports = mongoose.model("Logbook", logbookSchema);
