@@ -2,18 +2,15 @@ extends ../partials/logbook-includes/logbook-layout
 
 block bodycontent
 	if !editing
-		h4.align-center-middle.text-center.margin-vertical-3. New Log Entry
+		h4.align-center-middle.text-center.margin-vertical-3 New Log Entry
 	else
 		h4.align-center-middle.text-center.margin-vertical-3 Update Log Entry
 	form(action=editing ? "/logbook/edit/": "", method="POST")
-		.grid-container.small-margin-collapse
-			.grid-x.grid-padding-x.align-justify.grid-margin-y
+		.grid-container
+			.align-justify.grid-x.grid-margin-x
 				.cell.small-12.large-4.medium-6.input-group
 					span.input-group-label Date:
 					input.input-group-field(type='text', name='date', placeholder='Date', value=editing ? log.date : "")
-				//.cell.small-12.large-2.medium-6.input-group
-				//	span.input-group-label Time:
-				//	input#time.input-group-field(type='text', name='time', placeholder='Time', step='1800')
 				.cell.small-12.large-4.medium-4.cell.input-group
 					span.input-group-label Location:
 					input.input-group-field(type='text', name='location', placeholder='Location', value=editing ? log.location : "")
@@ -39,7 +36,8 @@ block bodycontent
 				.cell.small-12.large-4.medium-6.input-group
 					span.input-group-label Type:
 					select.input-group-field(name='typeOfWork')
-						option(value='Rope Access') Rope Access
+						option(value="", #{log.typeOfWork} = "" ? selected : "", hidden, disabled ) Select an option:
+						option(value='Rope Access', #{log.typeOfWork} = "Rope Access" ? selected : "") Rope Access
 						option(value='Fall-protection') Fall Protection
 						option(value='Travel-restraint') Travel Restraint
 						option(value='Training') Training
@@ -101,4 +99,5 @@ block bodycontent
 				if !editing
 					button.button.success.hollow.cell.large-3.small-12.shadow(type='submit') Save Entry
 				else
+					input.hide(name="logId", value=log._id, type="hidden")
 					button.button.warning.hollow.cell.large-3.small-12.shadow(type='submit') Update Entry

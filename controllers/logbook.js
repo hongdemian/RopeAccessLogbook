@@ -132,6 +132,7 @@ exports.getEditLog = (req, res, next) => {
 };
 
 exports.postEditLog = (req, res, next) => {
+  const logId = req.body.logId;
   const updatedDate = req.body.date;
   const updatedTime = req.body.time;
   const updatedLocation = req.body.location;
@@ -145,7 +146,7 @@ exports.postEditLog = (req, res, next) => {
   const updatedOrganization = req.body.org;
   const updatedTechniques = req.body.types;
   const updatedDetails = req.body.details;
-  console.log(techniques);
+  console.log(updatedTechniques);
 
   const log = new Log(
     updatedDate,
