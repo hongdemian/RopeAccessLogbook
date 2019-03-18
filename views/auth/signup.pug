@@ -9,8 +9,10 @@ block content
 				.user-message.user-message--error #{errorMessage}
 			form.login-form(action='/signup', method='POST' novalidate)
 				.form-control
-					label(for='name') Name:
-					input#name(type='text', name='name', value=oldInput.name)
+					label(for='firstname') First name:
+					input#firstname(type='text', name='firstname', value=oldInput.firstname)
+					label(for='lastname') Last name:
+					input#lastname(type='text', name='lastname', value=oldInput.lastname)
 				.form-control
 					label(for='email') Email
 					input#email(type='email', name='email', value=oldInput.email)

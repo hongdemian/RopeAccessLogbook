@@ -16,4 +16,10 @@ router.get("/new-entry", isAuth, logbookController.getNewEntry);
 //accept new entry
 router.post("/new-entry", isAuth, logbookController.postNewEntry);
 
+router.get("/edit/:logId", isAuth, logbookController.getEditLog);
+
+router.post("/edit/", isAuth, logbookController.postEditLog);
+
+router.post("/delete", isAuth, logbookController.postDeleteLog);
+
 module.exports = router;

@@ -3,11 +3,11 @@ extends ../partials/logbook-includes/logbook-layout
 block bodycontent
 	div
 		h4.text-center #{username}'s Logbook:
-			span.small.stat #{totalHours} hours
+			span.small #{totalHours} hours
 
-	.callout.primary.medium-6.float-center.padding-top-1
+	.callout.primary.medium-12.large-10.float-center.padding-top-1.small-margin-collapse
 		if logs.length > 0 || log
-			table.hover
+			table.hover.stack
 				thead
 					tr
 						th Date
@@ -17,6 +17,7 @@ block bodycontent
 						th Max
 						th Type
 						th Techniques
+						th
 				tbody
 					each log in logs
 						tr
@@ -26,9 +27,18 @@ block bodycontent
 								td= ""
 							td= log.location
 							td= log.company
-							td= log.hours
-							td= log.maxHeight
+							td= log.hours + " hours"
+							td= log.maxHeight + " Ft"
 							td= log.type
 							td= log.techniques
+							td
+								.button-group.tiny.padding-top-3
+									if !log.verified
+										a.button.hollow.tiny.success verify
+									a.button.hollow.tiny.warning(href="/logbook/edit/" + log._id + "?edit=true") edit
+									form(action="/logbook/delete", method="POST")
+										input(type="hidden", value=log._id, name='logId')
+										input(type="hidden", name="_csrf", value=csrfToken)
+										button.button.hollow.tiny.alert(type="submit") delete
 		else
 			h6.font-bold.text-center No Log Entries!

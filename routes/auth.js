@@ -28,9 +28,11 @@ router.post(
 router.post(
   "/signup",
   [
-    body("name", "User Name is not valid!")
-      .withMessage("Name must be 4 or more Characters")
-      .isAlphanumeric()
+    check("firstname", "Fist Name is not valid!")
+      .isLength({ min: 4 })
+      .trim(),
+    check("lastname", "Last name cannot be blank")
+      .isLength({ min: 3 })
       .trim(),
     check("email")
       .isEmail()

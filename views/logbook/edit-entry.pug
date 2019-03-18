@@ -1,37 +1,40 @@
 extends ../partials/logbook-includes/logbook-layout
 
 block bodycontent
-	h4.align-center-middle.text-center.margin-vertical-3 New Log Entry
-	form(action='', method="POST")
-		.grid-container
+	if !editing
+		h4.align-center-middle.text-center.margin-vertical-3. New Log Entry
+	else
+		h4.align-center-middle.text-center.margin-vertical-3 Update Log Entry
+	form(action=editing ? "/logbook/edit/": "", method="POST")
+		.grid-container.small-margin-collapse
 			.grid-x.grid-padding-x.align-justify.grid-margin-y
-				.cell.small-12.large-2.medium-6.input-group
+				.cell.small-12.large-4.medium-6.input-group
 					span.input-group-label Date:
-					input.input-group-field(type='text', name='date', placeholder='Date')
-				.cell.small-12.large-2.medium-6.input-group
-					span.input-group-label Time:
-					input#time.input-group-field(type='text', name='time', placeholder='Time', step='1800')
+					input.input-group-field(type='text', name='date', placeholder='Date', value=editing ? log.date : "")
+				//.cell.small-12.large-2.medium-6.input-group
+				//	span.input-group-label Time:
+				//	input#time.input-group-field(type='text', name='time', placeholder='Time', step='1800')
 				.cell.small-12.large-4.medium-4.cell.input-group
 					span.input-group-label Location:
-					input.input-group-field(type='text', name='location', placeholder='Location')
+					input.input-group-field(type='text', name='location', placeholder='Location', value=editing ? log.location : "")
 				.cell.small-12.large-3.medium-6.input-group
 					span.input-group-label Company:
-					input.input-group-field(type='text', name='company', placeholder='Company' autocomplete=false)
+					input.input-group-field(type='text', name='company', placeholder='Company' autocomplete=false, value=editing ? log.company : "")
 				.cell.small-12.large-3.medium-3.input-group
 					span.input-group-label Supervisor:
-					input.input-group-field(type='text', name='supervisor', placeholder='Supervisor')
+					input.input-group-field(type='text', name='supervisor', placeholder='Supervisor', value=editing ? log.supervisor: "")
 				.cell.small-12.large-3.medium-3.input-group
 					span.input-group-label Email:
-					input.input-group-field(type='email', name='email', placeholder='Supervisor Email', autocomplete=false)
+					input.input-group-field(type='email', name='email', placeholder='Supervisor Email', autocomplete=false, value=editing ? log.email : "")
 				.cell.small-12.large-2.medium-4.input-group
 					span.input-group-label ID:
-					input.input-group-field(type='text', name='id_num', placeholder='Id#')
+					input.input-group-field(type='text', name='id_num', placeholder='Id#', value=editing ? log.id_num : "")
 				.cell.small-12.large-3.medium-4.input-group
 					span.input-group-label Hours:
-					input.input-group-field(type='number', name='hours', placeholder='Hours')
+					input.input-group-field(type='number', name='hours', placeholder='Hours', value=editing ? log.hours : "" )
 				.cell.large-4.small-12.medium-4.input-group
 					span.input-group-label Height:
-					input.input-group-field(type='text', name='max_height', placeholder='Max Height')
+					input.input-group-field(type='text', name='max_height', placeholder='Max Height', value=editing ? log.maxHeight: "")
 					span.input-group-label Ft
 				.cell.small-12.large-4.medium-6.input-group
 					span.input-group-label Type:
@@ -86,11 +89,16 @@ block bodycontent
 								input(id='train', type='checkbox', name='types', value='Training')
 								label(for='train') Training
 
-				.cell.large-5.small-12
+				.cell.large-5.small-12.input-group
 					span.input-group-label Details:
-					textarea.input-group-field#details(rows='9', name='details', placeholder='Short Description...' )
-
+					textarea.input-group-field#details(rows='9', name='details', placeholder='Short Description...')
+					if editing
+						#{log.details}
+					else
 			.align-spaced.grid-x.grid-margin-y
 				input.hide(name="_csrf", value= csrfToken)
-				button.button.alert.hollow.cell.large-3.small-12.shadow(type='reset' href="/edit-entry") Reset Form
-				button.button.success.hollow.cell.large-3.small-12.shadow(type='submit') Save Entry
+				//button.button.alert.hollow.cell.large-3.small-12.shadow(type='reset' href="/edit-entry") Reset Form
+				if !editing
+					button.button.success.hollow.cell.large-3.small-12.shadow(type='submit') Save Entry
+				else
+					button.button.warning.hollow.cell.large-3.small-12.shadow(type='submit') Update Entry
