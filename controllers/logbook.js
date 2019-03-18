@@ -87,6 +87,17 @@ exports.postNewEntry = (req, res, next) => {
     .then(result => {
       console.log("Log Entry Created!");
     })
+    .then(() => {
+      Log.find({ user: req.user._id }).then(logs => {
+        res.render("logbook/index", {
+          username: req.user.firstname,
+          logs: logs,
+          pageTitle: "Logbook",
+          //TODO add user hours
+          totalHours: "21000"
+        });
+      });
+    })
     .catch(err => {
       console.log(err);
     });
@@ -146,7 +157,6 @@ exports.postEditLog = (req, res, next) => {
   const updatedOrganization = req.body.org;
   const updatedTechniques = req.body.types;
   const updatedDetails = req.body.details;
-  console.log(updatedTechniques);
 
   const log = new Log(
     updatedDate,

@@ -6,7 +6,7 @@ block bodycontent
 	else
 		h4.align-center-middle.text-center.margin-vertical-3 Update Log Entry
 	form(action=editing ? "/logbook/edit/": "", method="POST")
-		.grid-container
+		.grid-container.small-full
 			.align-justify.grid-x.grid-margin-x
 				.cell.small-12.large-4.medium-6.input-group
 					span.input-group-label Date:
@@ -38,17 +38,17 @@ block bodycontent
 					select.input-group-field(name='typeOfWork')
 						option(value="", #{log.typeOfWork} = "" ? selected : "", hidden, disabled ) Select an option:
 						option(value='Rope Access', #{log.typeOfWork} = "Rope Access" ? selected : "") Rope Access
-						option(value='Fall-protection') Fall Protection
-						option(value='Travel-restraint') Travel Restraint
-						option(value='Training') Training
-						option(value='Planning') Planning
-						option(value='Stand-By Rescue') Stand-by Rescue
+						option(value='Fall-protection', #{log.typeOfWork} = "Fall-protection" ? selected : "") Fall Protection
+						option(value='Travel-restraint', #{log.typeOfWork} = "Travel-restraint" ? selected : "") Travel Restraint
+						option(value='Training', #{log.typeOfWork} = "Training" ? selected : "") Training
+						option(value='Planning', #{log.typeOfWork} = "Planning" ? selected : "") Planning
+						option(value='Stand-By Rescue', #{log.typeOfWork} = "Stand-By Rescue" ? selected : "") Stand-by Rescue
 				.cell.small-12.medium-6.large-4.input-group
 					span.input-group-label Organization:
 					select.input-group-field(name='org')
-						option(value='sprat') Sprat
-						option(value='irata') Irata
-						option(value='') None
+						option(value='sprat', #{log.typeOfWork} = "sprat" ? selected : "") Sprat
+						option(value='irata', #{log.typeOfWork} = "irata" ? selected : "") Irata
+						option(value='', #{log.typeOfWork} = "" ? selected : "") None
 				fieldset.cell.fieldset.small-12.large-7
 					legend Types of Work Used:
 					.grid-container.fluid
@@ -86,7 +86,6 @@ block bodycontent
 							.input-group.small-12.medium-4
 								input(id='train', type='checkbox', name='types', value='Training')
 								label(for='train') Training
-
 				.cell.large-5.small-12.input-group
 					span.input-group-label Details:
 					textarea.input-group-field#details(rows='9', name='details', placeholder='Short Description...')
