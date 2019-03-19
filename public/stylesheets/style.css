@@ -1,6 +1,7 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: auto; }
 
 a {
   color: #00B7FF; }
@@ -18,5 +19,14 @@ a {
   border-color: red;
   background: #ffb0b0;
   color: red; }
+
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  margin: auto;
+  background: #d7ecfa;
+  padding-top: 6px;
+  padding-bottom: 0px; }
 
 /*# sourceMappingURL=style.css.map */

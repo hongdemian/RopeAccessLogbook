@@ -8,14 +8,14 @@ const PDFDocument = require("pdfkit");
 
 exports.getIndex = (req, res, next) => {
   Log.find({ user: req.user._id })
+    .sort({ date: -1 })
     .then(logs => {
-      console.log("list page render");
-      res.render("logbook/log-list", {
-        username: req.user.firstname,
+      res.render("logbook/index", {
+        username: req.user.firstname || "Damien",
         logs: logs,
         pageTitle: "Logbook",
         //TODO add user hours
-        totalHours: "21000"
+        totalHours: "Not Calulated"
       });
     })
     .catch(err => {
@@ -23,17 +23,6 @@ exports.getIndex = (req, res, next) => {
       error.httpStatusCode = 500;
       return next(error);
     });
-};
-
-exports.getList = (req, res, next) => {
-  Log.find({ user: req.user._id }).then(logs => {
-    res.render("logbook/log-list", {
-      logs: logs,
-      pageTitle: "Logbook Entries",
-      path: "/logbook/list",
-      username: req.user.firstname
-    });
-  });
 };
 
 exports.getNewEntry = (req, res, next) => {
@@ -102,7 +91,7 @@ exports.postNewEntry = (req, res, next) => {
       console.log(err);
     });
 
-  res.redirect("logbook/log-list");
+  res.redirect("index");
 };
 
 exports.getEditLog = (req, res, next) => {

@@ -8,7 +8,7 @@ const isAuth = require("../middleware/is-auth");
 
 router.get("/", isAuth, logbookController.getIndex);
 //get list of all entries
-router.get("/list", isAuth, logbookController.getList);
+router.get("/list", isAuth, logbookController.getIndex);
 
 //new logbook entry
 router.get("/new-entry", isAuth, logbookController.getNewEntry);
