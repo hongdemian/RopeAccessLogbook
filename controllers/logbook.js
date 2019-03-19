@@ -9,8 +9,8 @@ const PDFDocument = require("pdfkit");
 exports.getIndex = (req, res, next) => {
   Log.find({ user: req.user._id })
     .then(logs => {
-      console.log("index page start render");
-      res.render("logbook/index", {
+      console.log("list page render");
+      res.render("logbook/log-list", {
         username: req.user.firstname,
         logs: logs,
         pageTitle: "Logbook",
@@ -27,7 +27,7 @@ exports.getIndex = (req, res, next) => {
 
 exports.getList = (req, res, next) => {
   Log.find({ user: req.user._id }).then(logs => {
-    res.render("logbook/index", {
+    res.render("logbook/log-list", {
       logs: logs,
       pageTitle: "Logbook Entries",
       path: "/logbook/list",
@@ -102,19 +102,7 @@ exports.postNewEntry = (req, res, next) => {
       console.log(err);
     });
 
-  // if (!errors.isEmpty()) {
-  //   console.log("e:" + errors);
-  // }
-
-  res.render("logbook/index", {
-    pageTitle: "Logbook",
-    path: "logbook",
-    username: "Damien",
-    logs: [],
-    // logs: logs,
-    //TODO add user hours
-    totalHours: " 21000"
-  });
+  res.redirect("logbook/log-list");
 };
 
 exports.getEditLog = (req, res, next) => {
