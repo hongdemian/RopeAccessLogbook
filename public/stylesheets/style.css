@@ -1,10 +1,12 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  height: auto; }
+  height: auto;
+}
 
 a {
-  color: #00B7FF; }
+  color: #00B7FF;
+}
 
 .user-message {
   margin: 30px auto 0;
@@ -13,20 +15,29 @@ a {
   padding: 0.5rem;
   border-radius: 3px;
   background: #b9c9ff;
-  text-align: center; }
+  text-align: center;
+}
 
 .user-message--error {
   border-color: red;
   background: #ffb0b0;
-  color: red; }
+  color: red;
+  max-width: 50%;
+}
 
 footer {
   position: fixed;
-  width: 100%;
+  background-color: #d7ecfa;
   bottom: 0;
-  margin: auto;
-  background: #d7ecfa;
-  padding-top: 6px;
-  padding-bottom: 0px; }
+  left: 0;
+  padding: 15px 50px;
+}
+
+.fullWidth {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: initial;
+}
 
 /*# sourceMappingURL=style.css.map */
