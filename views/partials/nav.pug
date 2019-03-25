@@ -11,16 +11,24 @@
 				li
 					a(href='/incident') Incident
 			li
-				a(href='https://w.connectingreflections.ca') Weather
+				a(href='https://w.connectingreflections.ca')
+					i.fas.fa-cloud-sun-rain
+					|  Weather
 	.top-bar-right
 		ul.menu
 			unless isAuthenticated
 				li
-					a(href='/login') Login
+					a(href='/login')
+						i.fas.fa-sign-in-alt
+						|  Login
 				li
-					a(href='/signup') Register
+					a(href='/signup')
+						i.fas.fa-user-plus
+						|  Register
 			else
 				li
 					form(action='/logout', method='post')
 						input(type='hidden', name='_csrf', value=csrfToken)
-						button(type='submit') Logout
+						button(type='submit')
+						i.fas.fa-sign-out-alt
+						|  Logout
