@@ -1,25 +1,52 @@
+.title-bar(data-responsive-toggle="responsive-menu", data-hide-for="medium")
+		button.menu-icon(type="button", data-toggle="responsive-menu")
+		.title-bar-title Menu
 #responsive-menu.top-bar
 	.top-bar-left
-		ul.dropdown.menu(data-responsive-menu="accordion medium-dropdown")
+		ul.menu.large-horizontal(data-responsive-menu="accordion medium-dropdown")
 			li
-				a.menu-text(href='/') Connecting Reflections
-			if isAuthenticated
-				li
-					a(href='/forms')
-						i.fas.fa-clipboard-check
-						|  Forms
-				li
-					a(href='/logbook')
-						i.fas.fa-book
-						|  LogBook
-				li
-					a(href='/incident')
-						i.fas.fa-ambulance
-						|  Incident
-			li
-				a(href='https://w.connectingreflections.ca')
-					i.fas.fa-cloud-sun-rain
-					|  Weather
+				a.menu-text(href='/')
+					i.far.fa-dumpster-fire
+					|  Connecting Reflections
+				ul.vertical.medium-horizontal.menu
+					if isAuthenticated
+						li
+							a(href='/forms')
+								i.fas.fa-clipboard-check
+								|  Forms
+							ul.vertical.medium-horizontal.menu.small-centered
+								li
+									a(href="/forms/flha")
+										i.far.fa-clipboard-check
+										|  FLHA
+								li
+									a(href="/forms/fplan")
+										i.fab.fa-accusoft
+										|  Fall Protection Plan
+								li
+									a(href="/forms/emerg")
+										i.far.fa-biohazard
+										|  Emergency Response
+								li
+									a(href="/forms/hotwork")
+										i.far.fa-fire-extinguisher
+										|  Hot Work
+								li
+									a(href="/forms/entries")
+										i.far.fa-file-archive
+										|  Entries
+						li
+							a(href='/logbook')
+								i.fas.fa-book
+								|  LogBook
+						li
+							a(href='/incident')
+								i.fas.fa-ambulance
+								|  Incident
+					li
+						a(href='https://w.connectingreflections.ca')
+							i.fas.fa-cloud-sun-rain
+							|  Weather
 	.top-bar-right
 		ul.menu
 			unless isAuthenticated
@@ -40,16 +67,17 @@
 								|  #{username}
 							ul.menu
 								li
-									a(href='#')
+									a(href='admin/settings')
 										i.fas.fa-user-cog
 										|  Settings
 								li
-									a(href='#')
-										i.fas.fa-folder-open
+									a(href='admin/profile')
+										i.far.fa-id-card
 										|  Profile
-					li
-								form(action='/logout', method='post')
-									input(type='hidden', name='_csrf', value=csrfToken)
-									button.button.warning.rounded.margin-left-2(type='submit')
-										i.fas.fa-sign-out-alt
-										|  Logout
+								li
+									form(action='/logout', method='post')
+										input(type='hidden', name='_csrf', value=csrfToken)
+										a
+											button(type='submit')
+											i.fas.fa-sign-out-alt
+											|  Logout

@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router;
+const router = express.Router();
 
 router.get("/flha", (req, res, next) => {
   res.render("/forms/flha", {

@@ -1,6 +1,8 @@
-extends ../partials/head
+extends ../partials/layout
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+block contentBlock
+  .grid-x.grid-margin-x.align-center.margin-top-3
+   .callout.warning.cell.medium-9
+    h1= message
+    h2= error.status
+    pre #{error.stack}

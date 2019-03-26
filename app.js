@@ -54,11 +54,11 @@ const fileFilter = (req, file, cb) => {
 const errorController = require("./controllers/error");
 
 const indexRoutes = require("./routes/index");
-// const formsRoutes = require("./routes/forms");
+const formsRoutes = require("./routes/forms");
 const logbookRoutes = require("./routes/logbook");
 const authRoutes = require("./routes/auth");
-// const adminRoutes = require("./routes/admin");
-// const weatherRoutes = require("./routes/weather");
+const adminRoutes = require("./routes/admin");
+const weatherRoutes = require("./routes/weather");
 
 app.use(
   bodyParser.urlencoded({
@@ -95,11 +95,13 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
   if (!req.session.user) {
+    console.log("must login");
     return next();
   }
   User.findById(req.session.user._id)
     .then(user => {
       req.user = user;
+      res.locals.username = user.firstname || "Default";
       next();
     })
     .catch(err => {
@@ -109,16 +111,16 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
   res.locals.csrfToken = req.csrfToken();
-  res.locals.username = user.firstname;
+  // res.locals.username = req.user.firstname || "Default";
   next();
 });
 
 app.use("/", indexRoutes);
-// app.use(formsRoutes);
-// app.use(adminRoutes);
+app.use("/forms", formsRoutes);
+app.use("/admin", adminRoutes);
 app.use("/logbook", logbookRoutes);
 app.use(authRoutes);
-// app.use('/weather', weatherRoutes);
+app.use("/weather", weatherRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
