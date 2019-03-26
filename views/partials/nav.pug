@@ -1,6 +1,6 @@
 #responsive-menu.top-bar
 	.top-bar-left
-		ul.dropdown.menu(data-dropdown-menu="")
+		ul.dropdown.menu(data-responsive-menu="accordion medium-dropdown")
 			li
 				a.menu-text(href='/') Connecting Reflections
 			if isAuthenticated
@@ -38,18 +38,18 @@
 							a(href='#')
 								i.fas.fa-user-alt
 								|  #{username}
-						ul.menu
-							li
-								a(href='#')
-									i.fas.fa-user-cog
-									|  Settings
-							li
-								a(href='#')
-									i.fas.fa-folder-open
-									|  Profile
-						li
-							form(action='/logout', method='post')
-								input(type='hidden', name='_csrf', value=csrfToken)
-								button(type='submit')
-									i.fas.fa-sign-out-alt
-									|  Logout
+							ul.menu
+								li
+									a(href='#')
+										i.fas.fa-user-cog
+										|  Settings
+								li
+									a(href='#')
+										i.fas.fa-folder-open
+										|  Profile
+					li
+								form(action='/logout', method='post')
+									input(type='hidden', name='_csrf', value=csrfToken)
+									button.button.warning.rounded.margin-left-2(type='submit')
+										i.fas.fa-sign-out-alt
+										|  Logout

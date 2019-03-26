@@ -12,7 +12,7 @@ exports.getIndex = (req, res, next) => {
     .then(logs => {
       console.log("req: " + req.user.firstname);
       res.render("logbook/index", {
-        username: req.user.firstname || "Damien H",
+        username: res.locals.username || "Damien H",
         logs: logs,
         pageTitle: "Logbook",
         //TODO add user hours

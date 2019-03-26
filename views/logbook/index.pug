@@ -1,6 +1,6 @@
 extends ../partials/logbook-includes/logbook-layout
 
-block bodycontent
+block contentBlock
 	div.homepage-section-title.callout.primary
 		h3.text-center #{username}'s Logbook:
 		h5.text-center.subheader #{totalHours} hours
@@ -10,7 +10,6 @@ block bodycontent
 		p.text-center  Information entered into logs are saved, but the verification module has not yet been completed. Therefore, all entries are currently unverified. In the future, the verify button will send an email to the Supervisor and allow them to verify each log entry.
 		button.close-button(aria-label="Dismiss alert", type="button", data-close)
 			span(aria-hidden="true") &times;
-
 	.callout.primary.medium-12.large-10.float-center.padding-top-1.small-margin-collapse
 		if logs.length > 0 || log
 			table.hover.stack
