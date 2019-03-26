@@ -5,11 +5,17 @@
 				a.menu-text(href='/') Connecting Reflections
 			if isAuthenticated
 				li
-					a(href='/forms') Forms
+					a(href='/forms')
+						i.fas.fa-clipboard-check
+						|  Forms
 				li
-					a(href='/logbook') LogBook
+					a(href='/logbook')
+						i.fas.fa-book
+						|  LogBook
 				li
-					a(href='/incident') Incident
+					a(href='/incident')
+						i.fas.fa-ambulance
+						|  Incident
 			li
 				a(href='https://w.connectingreflections.ca')
 					i.fas.fa-cloud-sun-rain
@@ -27,8 +33,23 @@
 						|  Register
 			else
 				li
-					form(action='/logout', method='post')
-						input(type='hidden', name='_csrf', value=csrfToken)
-						button(type='submit')
-						i.fas.fa-sign-out-alt
-						|  Logout
+					ul.dropdown.menu#user-dropdown-menu(data-dropdown-menu)
+						li.is-dropdown-submenu-parent
+							a(href='#')
+								i.fas.fa-user-alt
+								|  #{username}
+						ul.menu
+							li
+								a(href='#')
+									i.fas.fa-user-cog
+									|  Settings
+							li
+								a(href='#')
+									i.fas.fa-folder-open
+									|  Profile
+						li
+							form(action='/logout', method='post')
+								input(type='hidden', name='_csrf', value=csrfToken)
+								button(type='submit')
+									i.fas.fa-sign-out-alt
+									|  Logout

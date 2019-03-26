@@ -10,8 +10,9 @@ exports.getIndex = (req, res, next) => {
   Log.find({ user: req.user._id })
     .sort({ date: -1 })
     .then(logs => {
+      console.log("req: " + req.user.firstname);
       res.render("logbook/index", {
-        username: req.user.firstname || "Damien",
+        username: req.user.firstname || "Damien H",
         logs: logs,
         pageTitle: "Logbook",
         //TODO add user hours

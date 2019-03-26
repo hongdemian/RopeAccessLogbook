@@ -1,9 +1,9 @@
-extends ../partials/head
-block headcontent
+extends ../partials/layout
+block headBlock
 	link(rel='stylesheet', href='/stylesheets/auth.css')
 	link(rel='stylesheet', href='/stylesheets/forms.css')
 
-block content
+block contentBlock
 	main
 			if errorMessage
 				.user-message.user-message--error #{errorMessage}
