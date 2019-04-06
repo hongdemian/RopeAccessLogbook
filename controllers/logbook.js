@@ -1,5 +1,8 @@
 const Log = require("../models/logbook");
 const { validationResult } = require("express-validator/check");
+// const datepicker = require("js-datepicker");
+
+// const picker = datepicker("#date-input");
 
 const fs = require("fs");
 const path = require("path");
@@ -91,8 +94,6 @@ exports.postNewEntry = (req, res, next) => {
     .catch(err => {
       console.log(err);
     });
-
-  res.redirect("index");
 };
 
 exports.getEditLog = (req, res, next) => {
