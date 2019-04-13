@@ -1,14 +1,22 @@
-include ../partials/head
-        block headBlock
+doctype html
+html
+	head
+		title= pageTitle
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width,initial-scale=1")
+
+		block headBlock
+		include ../partials/head
 
 body
-  include ../partials/nav
-  block navBlock
+	include ../partials/nav
+	block navBlock
 
-  block contentBlock
 
-  include ../partials/end
-  include ../partials/scripts
-  block scriptBlock
-  block endBlock
+	block contentBlock
+
+	include ../partials/end
+	include ../partials/scripts
+	block scriptBlock
+	block endBlock
 
