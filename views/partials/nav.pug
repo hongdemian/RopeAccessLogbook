@@ -6,7 +6,7 @@
 		ul.menu.large-horizontal(data-responsive-menu="accordion small-dropdown")
 			li
 				a.menu-text(href='/')
-					i.far.fa-city
+					i.fas.fa-broadcast-tower
 					|  Connecting Reflections
 				ul.vertical.medium-horizontal.menu
 					if isAuthenticated
@@ -44,9 +44,14 @@
 								i.fas.fa-ambulance
 								|  Incident
 					li
-						a(href='https://w.connectingreflections.ca')
-							i.fas.fa-cloud-sun-rain
-							|  Weather
+						a(href='/weather/')
+							i.fas.fa-cloud-rain
+							|	 Weather
+						ul.vertical.medium-horizontal.menu.small-centered
+							li
+								a(href='https://w.connectingreflections.ca')
+									i.fas.fa-cloud-sun-rain
+									|  Weather Page
 	.top-bar-right
 		ul.menu
 			unless isAuthenticated

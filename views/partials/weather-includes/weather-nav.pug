@@ -1,24 +1,30 @@
 nav.top-bar
 	.top-bar-left
-		ul.dropdown.menu(data-dropdown-menu='')
+		ul.dropdown.menu.medium-horizontal(data-dropdown-menu='')
 			li
 				a(href='#') Current
-				ul.menu
+				ul.menu.vertical
 					li
 						a(href='#') Simple
 					li
 						a(href='#') Detail
 					li
 						a(href='#') Search
+			li
 				a(href='#') Forecast
 				ul.menu
 					li
 						a(href='/daily') Daily
 					li
 						a(href='/hourly') Hourly
+			li
 				a(href='#') Maps
-				li
-					a(href='#') Maps
-	.top-bar-right
-		li
-			a(href='/') Home
+				ul.menu
+					li
+						a(href='#') Wind
+					li
+						a(href='#') Precipitation
+					li
+						a(href='#') Temperature
+					li
+						a(href='#') Warnings
