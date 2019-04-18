@@ -1,8 +1,5 @@
 const Log = require("../models/logbook");
 const { validationResult } = require("express-validator/check");
-// const datepicker = require("js-datepicker");
-
-// const picker = datepicker("#date-input");
 
 const fs = require("fs");
 const path = require("path");
@@ -98,16 +95,15 @@ exports.postNewEntry = (req, res, next) => {
 
 exports.getEditLog = (req, res, next) => {
   const editMode = req.query.edit;
-  console.log(editMode);
   if (!editMode) {
     return res.redirect("/logbook");
   }
   const logId = req.params.logId;
-  console.log("logId: " + logId);
-  console.log(req);
+  // console.log("logId: " + logId);
+  // console.log(req);
   Log.findById(logId)
     .then(log => {
-      console.log("log: " + log);
+      // console.log("log: " + log);
       if (!log) {
         return res.redirect("/");
       }
@@ -122,9 +118,10 @@ exports.getEditLog = (req, res, next) => {
 };
 
 exports.postEditLog = (req, res, next) => {
+  console.log("req: ");
+  // console.log("res: " + res.body);
   const logId = req.body.logId;
   const updatedDate = req.body.date;
-  const updatedTime = req.body.time;
   const updatedLocation = req.body.location;
   const updatedCompany = req.body.company;
   const updatedSupervisor = req.body.supervisor;
@@ -136,10 +133,11 @@ exports.postEditLog = (req, res, next) => {
   const updatedOrganization = req.body.org;
   const updatedTechniques = req.body.types;
   const updatedDetails = req.body.details;
+  console.log(logId + " logId");
 
   const log = new Log(
+    logId,
     updatedDate,
-    updatedTime,
     updatedLocation,
     updatedCompany,
     updatedSupervisor,
@@ -150,9 +148,9 @@ exports.postEditLog = (req, res, next) => {
     updatedType,
     updatedOrganization,
     updatedTechniques,
-    updatedDetails,
-    logId
+    updatedDetails
   );
+  console.log("entry: " + log);
   log
     .save()
     .then(result => {

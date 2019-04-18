@@ -6,7 +6,7 @@ block contentBlock
 		h4.align-center-middle.text-center.margin-vertical-3 New Log Entry
 	else
 		h4.align-center-middle.text-center.margin-vertical-3 Update Log Entry
-	form(action=editing ? "/logbook/edit/": "", method="POST")
+	form(action=editing ? `/logbook/edit/`: "", method="POST")
 		.grid-container.small-full
 			.align-justify.grid-x.grid-margin-x
 				.cell.small-12.large-4.medium-6.input-group
@@ -99,7 +99,7 @@ block contentBlock
 				if !editing
 					button.button.success.hollow.cell.large-3.small-12.shadow(type='submit') Save Entry
 				else
-					input.hide(name="logId", value='{log._id}', type="hidden")
+					input.hide(name="logId", value=log._id, type="hidden")
 					button.button.warning.hollow.cell.large-3.small-12.shadow(type='submit') Update Entry
 
 
