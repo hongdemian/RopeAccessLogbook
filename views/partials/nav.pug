@@ -49,9 +49,13 @@
 							|	 Weather
 						ul.vertical.medium-horizontal.menu.small-centered
 							li
+								a(href='/weather')
+									i.fas.fa-cloud-rain
+									|  Weather
+							li
 								a(href='https://w.connectingreflections.ca')
 									i.fas.fa-cloud-sun-rain
-									|  Weather Page
+									|  External Weather Page
 	.top-bar-right
 		ul.menu
 			unless isAuthenticated
