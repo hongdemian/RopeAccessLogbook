@@ -15,7 +15,10 @@ block contentBlock
 			label(for='password') Password:
 			input#password(type='password', name='password', value=oldInput.password)
 		input(type='hidden', value=csrfToken, name='_csrf')
-		button.button.hollow.home-form-submit-button(type='submit') Login
-		button
-			a#reset.button.hollow.alert(href='/reset') Forgot Password!
+		.grid-container
+			.grid-x.grid-padding-x
+				button.button.hollow.home-form-submit-button.cell.small-4(type='submit') Login
+				.cell.auto
+				button
+					a.button.hollow.alert.cell.auto(href='/reset') Forgot Password!
 
