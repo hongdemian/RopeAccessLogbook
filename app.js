@@ -2,13 +2,17 @@ const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const logger = require("morgan");
+const morgan = require("morgan");
 const sassMiddleware = require("node-sass-middleware");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
 
 const app = express();
+const Sentry = require("@sentry/node");
+Sentry.init({
+  dsn: "https://99206f8ed77c43c189bb4547b2821156@sentry.io/1445942"
+});
 const User = require("./models/user");
 //database init
 const mongoose = require("mongoose");
@@ -60,6 +64,7 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const weatherRoutes = require("./routes/weather");
 
+app.use(Sentry.Handlers.requestHandler());
 app.use(
   bodyParser.urlencoded({
     extended: false
@@ -79,7 +84,7 @@ app.use(
 app.use(csrfProtection);
 app.use(flash());
 
-app.use(logger("dev"));
+app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -122,8 +127,10 @@ app.use("/logbook", logbookRoutes);
 app.use(authRoutes);
 app.use("/weather", weatherRoutes);
 
+app.use(Sentry.Handlers.errorHandler());
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function onError(err, req, res, next) {
   next(createError(404));
 });
 
@@ -132,7 +139,7 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
-
+  console.log(err);
   // render the error page
   res.status(err.status || 500);
   res.render("error/error");
