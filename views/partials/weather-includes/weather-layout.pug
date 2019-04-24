@@ -1,23 +1,14 @@
-doctype html
-html
-	head
-		title= pageTitle
-		meta(charset="UTF-8")
-		meta(name="viewport", content="width=device-width,initial-scale=1")
+include ../head
+	block headContent
+		include ./weather-head
 
-		block headBlock
-		include ../../partials/head
-		include ../../partials/weather-includes/weather-head
+block navContent
+	include ../nav
+	include ./weather-nav
 
-	body
-		include ../../partials/nav
-		block navBlock
+block bodyContent
 
+block endContent
 
-		block contentBlock
-
-		include ../../partials/end
-		include ../../partials/scripts
-		block scriptBlock
-		block endBlock
-
+block scriptContent
+	include ./weather-scripts
