@@ -16,7 +16,7 @@ exports.getIndex = (req, res, next) => {
         logs: logs,
         pageTitle: "Logbook",
         //TODO add user hours
-        totalHours: "Not Calulated"
+        totalHours: "Not Calculated"
       });
     })
     .catch(err => {
@@ -55,7 +55,7 @@ exports.postNewEntry = (req, res, next) => {
   const errors = validationResult(req);
   console.log(techniques);
 
-  const log = new Log({
+  const log = new Log(
     user,
     date,
     time,
@@ -70,7 +70,7 @@ exports.postNewEntry = (req, res, next) => {
     organization,
     techniques,
     details
-  });
+  );
 
   log
     .save()
@@ -84,7 +84,7 @@ exports.postNewEntry = (req, res, next) => {
           logs: logs,
           pageTitle: "Logbook",
           //TODO add user hours
-          totalHours: "21000"
+          totalHours: "Not Calculated"
         });
       });
     })
@@ -118,37 +118,42 @@ exports.getEditLog = (req, res, next) => {
 };
 
 exports.postEditLog = (req, res, next) => {
-  console.log("req: ");
+  console.log("Post Edit Route");
   // console.log("res: " + res.body);
   const logId = req.body.logId;
-  const updatedDate = req.body.date;
-  const updatedLocation = req.body.location;
-  const updatedCompany = req.body.company;
-  const updatedSupervisor = req.body.supervisor;
-  const updatedEmail = req.body.email;
-  const updatedId_num = req.body.id_num;
-  const updatedHours = req.body.hours;
-  const updatedMaxHeight = req.body.max_height;
-  const updatedType = req.body.typeOfWork;
-  const updatedOrganization = req.body.org;
-  const updatedTechniques = req.body.types;
-  const updatedDetails = req.body.details;
-  console.log(logId + " logId");
+  const date = req.body.date;
+  const time = req.body.time;
+  const location = req.body.location;
+  const company = req.body.company;
+  const supervisor = req.body.supervisor;
+  const email = req.body.email;
+  const id_num = req.body.id_num;
+  const hours = req.body.hours;
+  const maxHeight = req.body.max_height;
+  const type = req.body.typeOfWork;
+  const organization = req.body.org;
+  const techniques = req.body.types;
+  const details = req.body.details;
+  const user = req.user._id;
+  const errors = validationResult(req);
+  console.log(techniques);
 
   const log = new Log(
-    logId,
-    updatedDate,
-    updatedLocation,
-    updatedCompany,
-    updatedSupervisor,
-    updatedEmail,
-    updatedId_num,
-    updatedHours,
-    updatedMaxHeight,
-    updatedType,
-    updatedOrganization,
-    updatedTechniques,
-    updatedDetails
+    user,
+    date,
+    time,
+    location,
+    company,
+    supervisor,
+    email,
+    id_num,
+    hours,
+    maxHeight,
+    type,
+    organization,
+    techniques,
+    details,
+    logId
   );
   console.log("entry: " + log);
   log
@@ -157,7 +162,10 @@ exports.postEditLog = (req, res, next) => {
       console.log("UPDATED Entry!");
       res.redirect("/logbook/list");
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log("DB save error!");
+      console.log(err);
+    });
 };
 
 exports.postDeleteLog = (req, res, next) => {

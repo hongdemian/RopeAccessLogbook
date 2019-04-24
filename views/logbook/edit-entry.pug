@@ -90,9 +90,8 @@ block contentBlock
 				.cell.large-5.small-12.input-group
 					span.input-group-label Details:
 					textarea.input-group-field#details(rows='9', name='details', placeholder='Short Description...')
-					if editing
-						#{log.details}
-					else
+						if editing
+							#{log.details}
 			.align-spaced.grid-x.grid-margin-y
 				input.hide(name="_csrf", value= csrfToken)
 				//button.button.alert.hollow.cell.large-3.small-12.shadow(type='reset' href="/edit-entry") Reset Form
