@@ -1,7 +1,15 @@
-include ../partials/weather-includes/weather-head
+extends ../partials/weather-includes/weather-layout
+
+block headBlock
+	link(rel='stylesheet', href='/stylesheets/weather/weather.css')
+
+block navBlock
 	include ../partials/weather-includes/weather-nav
 
-block content
+block contentBlock
+	.large-text-center
+		h1 Weather Index
+		p weather page coming soon
 
-
-include ../partials/end
+block endBlock
+	include ../partials/end

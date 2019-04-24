@@ -1,13 +1,23 @@
-block headContent
-	include ./weather-head
+doctype html
+html
+	head
+		title= pageTitle
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width,initial-scale=1")
 
-block navContent
-	include ../nav
-	include ./weather-nav
+		block headBlock
+		include ../../partials/head
+		include ../../partials/weather-includes/weather-head
 
-block bodyContent
+	body
+		include ../../partials/nav
+		block navBlock
 
-block endContent
 
-block scriptContent
-	include ./weather-scripts
+		block contentBlock
+
+		include ../../partials/end
+		include ../../partials/scripts
+		block scriptBlock
+		block endBlock
+

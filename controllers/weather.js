@@ -1,5 +1,5 @@
 exports.getCurrent = (req, res, next) => {
-  res.render("weather/current-conditions", {
+  res.render("weather/index", {
     pageTitle: "Weather"
   });
 };
