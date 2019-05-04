@@ -71,22 +71,12 @@ exports.postNewEntry = (req, res, next) => {
     techniques,
     details
   });
-
+  console.log("log: " + log);
   log
     .save()
-    .then(result => {
-      console.log("Log Entry Created!");
-    })
     .then(() => {
-      Log.find({ user: req.user._id }).then(logs => {
-        res.render("logbook/index", {
-          username: req.user.firstname,
-          logs: logs,
-          pageTitle: "Logbook",
-          //TODO add user hours
-          totalHours: "21000"
-        });
-      });
+      console.log("Log Entry Created!");
+      res.redirect("/logbook");
     })
     .catch(err => {
       console.log(err);
