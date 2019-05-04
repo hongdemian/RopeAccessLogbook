@@ -16,7 +16,7 @@ exports.getIndex = (req, res, next) => {
         logs: logs,
         pageTitle: "Logbook",
         //TODO add user hours
-        totalHours: "Not Calulated"
+        totalHours: "Not Calculated"
       });
     })
     .catch(err => {
@@ -71,7 +71,7 @@ exports.postNewEntry = (req, res, next) => {
     techniques,
     details
   });
-  console.log("log: " + log);
+
   log
     .save()
     .then(() => {
