@@ -11,7 +11,9 @@ const csrf = require("csurf");
 const app = express();
 const Sentry = require("@sentry/node");
 Sentry.init({
-  dsn: "https://99206f8ed77c43c189bb4547b2821156@sentry.io/1445942"
+  dsn: "https://99206f8ed77c43c189bb4547b2821156@sentry.io/1445942",
+  debug: true,
+  environment: "development"
 });
 const User = require("./models/user");
 //database init
@@ -152,8 +154,10 @@ mongoose
   .then(result => {
     console.log("Connected to MongoDB!");
   })
+
   .catch(err => {
-    console.log("Error connecting to Mongo Server!");
+    Sentry.captureException(err);
+    console.log("Unable to connect to MongoDB");
   });
 
 module.exports = app;
