@@ -57,21 +57,24 @@ const fileFilter = (req, file, cb) => {
 };
 
 // routes setup
-const errorController = require("./controllers/error");
-
 const indexRoutes = require("./routes/index");
 const formsRoutes = require("./routes/forms");
 const logbookRoutes = require("./routes/logbook");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const weatherRoutes = require("./routes/weather");
+const errorRoutes = require("./routes/error");
 
+// middleware
+// error logger
 app.use(Sentry.Handlers.requestHandler());
+//JSON parser
 app.use(
   bodyParser.urlencoded({
     extended: false
   })
 );
+//file handling
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
 );
@@ -83,9 +86,11 @@ app.use(
     store: store
   })
 );
+//CSRF
 app.use(csrfProtection);
+//error message handling
 app.use(flash());
-
+//logging
 app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -102,7 +107,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
   if (!req.session.user) {
-    console.log("must login");
     return next();
   }
   User.findById(req.session.user._id)
@@ -112,13 +116,13 @@ app.use((req, res, next) => {
       next();
     })
     .catch(err => {
+      //TODO error handling required
       console.log(err);
     });
 });
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
   res.locals.csrfToken = req.csrfToken();
-  // res.locals.username = req.user.firstname || "Default";
   next();
 });
 
@@ -128,6 +132,7 @@ app.use("/admin", adminRoutes);
 app.use("/logbook", logbookRoutes);
 app.use(authRoutes);
 app.use("/weather", weatherRoutes);
+app.use("/error", errorRoutes);
 
 app.use(Sentry.Handlers.errorHandler());
 
@@ -154,7 +159,6 @@ mongoose
   .then(result => {
     console.log("Connected to MongoDB!");
   })
-
   .catch(err => {
     Sentry.captureException(err);
     console.log("Unable to connect to MongoDB");
