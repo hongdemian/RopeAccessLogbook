@@ -4,7 +4,18 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
+exports.postIndex = (req, res, next) => {
+  res.status(200).json({
+    message: "index reached"
+  });
+};
+
 exports.postSignup = (req, res, next) => {
+  res.status(200).json({
+    message: "postSignup reached",
+    url: req.url
+  });
+  console.log("POST SIGNUP API route");
   const email = req.body.email;
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;

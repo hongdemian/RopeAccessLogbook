@@ -64,10 +64,11 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const weatherRoutes = require("./routes/weather");
 const errorRoutes = require("./routes/error");
+const apiRoutes = require("./routes/api");
 
 // middleware
 // error logger
-app.use(Sentry.Handlers.requestHandler());
+// app.use(Sentry.Handlers.requestHandler());
 //JSON parser
 app.use(
   bodyParser.urlencoded({
@@ -104,6 +105,10 @@ app.use(
   })
 );
 app.use(express.static(path.join(__dirname, "public")));
+app.use((req, res, next) => {
+  console.log(req.url);
+  next();
+});
 
 app.use((req, res, next) => {
   if (!req.session.user) {
@@ -120,6 +125,7 @@ app.use((req, res, next) => {
       console.log(err);
     });
 });
+
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
   res.locals.csrfToken = req.csrfToken();
@@ -132,12 +138,14 @@ app.use("/admin", adminRoutes);
 app.use("/logbook", logbookRoutes);
 app.use(authRoutes);
 app.use("/weather", weatherRoutes);
+app.use("/api", apiRoutes);
 app.use("/error", errorRoutes);
 
-app.use(Sentry.Handlers.errorHandler());
+// app.use(Sentry.Handlers.errorHandler());
 
 // catch 404 and forward to error handler
 app.use(function onError(err, req, res, next) {
+  console.warn(req.url);
   next(createError(404));
 });
 
