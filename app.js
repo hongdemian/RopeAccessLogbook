@@ -131,21 +131,21 @@ app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   next();
 });
-
+app.use("/api/auth", apiRoutes);
 app.use("/", indexRoutes);
 app.use("/forms", formsRoutes);
 app.use("/admin", adminRoutes);
 app.use("/logbook", logbookRoutes);
 app.use(authRoutes);
 app.use("/weather", weatherRoutes);
-app.use("/api", apiRoutes);
+
 app.use("/error", errorRoutes);
 
 // app.use(Sentry.Handlers.errorHandler());
 
 // catch 404 and forward to error handler
 app.use(function onError(err, req, res, next) {
-  console.warn(req.url);
+  // console.warn(req.url);
   next(createError(404));
 });
 

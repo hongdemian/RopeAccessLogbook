@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
-exports.postIndex = (req, res, next) => {
+exports.getIndex = (req, res, next) => {
   res.status(200).json({
     message: "index reached"
   });

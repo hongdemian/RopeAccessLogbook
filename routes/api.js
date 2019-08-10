@@ -1,13 +1,20 @@
 const express = require("express");
 const router = express.Router();
-
 const apiController = require("../controllers/api");
 const apiAuth = require("../middleware/apiAuth");
 
-router.post("/signup", apiController.postSignup);
-router.post("/login", apiController.postLogin);
+router.use((req, res, next) => {
+  console.log("Time: ", Date.now());
+  next();
+});
 
-router.post("/", apiController.postIndex);
+router
+  .route("/signup")
+  .get(apiController.getIndex)
+  .post(apiController.postSignup);
+router.route("/login").post(apiController.postLogin);
+
+// router.post("/", apiController.postIndex);
 
 // router.post("/profile", apiAuth, apiController.postProfile);
 
