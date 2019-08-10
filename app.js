@@ -131,7 +131,7 @@ app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   next();
 });
-app.use("/api/auth", apiRoutes);
+app.use("/api", apiRoutes);
 app.use("/", indexRoutes);
 app.use("/forms", formsRoutes);
 app.use("/admin", adminRoutes);
